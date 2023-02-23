@@ -1,0 +1,6 @@
+# Arduino logs 
+*.json
+*.svd 
+.vscode/
+debug.cfg
+*.orig
