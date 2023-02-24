@@ -15,7 +15,7 @@
 #include "esp_log.h"
 #include "driver/gpio.h"
 #include "button_gpio.h"
-#include "btn_config.h"
+
 
 static const char *TAG = "gpio button";
 

@@ -1,7 +1,8 @@
 #ifndef BUTTON_H
 #define BUTTON_H
 #include <Arduino.h>
-#include "iot_button.h"
+#include "include/iot_button.h"
+#include "config/btn_config.h"
 
 typedef void (*callbackFunction)(void);
 void _press_down_cb(void *arg, void *data);

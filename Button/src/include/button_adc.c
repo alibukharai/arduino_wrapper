@@ -27,7 +27,9 @@
 #include "esp_adc_cal.h"
 #endif
 #include "button_adc.h"
-#include "btn_config.h"
+#include "config/btn_config.h"
+
+
 
 
 static const char *TAG = "adc button";
@@ -147,7 +149,7 @@ static esp_err_t adc_calibration_init(adc_unit_t unit, adc_atten_t atten, adc_ca
         ESP_LOGE(TAG, "Invalid arg or no memory");
     }
 
-    return calibrated?ESP_OK:ESP_FAIL;
+    return calibrated ? ESP_OK : ESP_FAIL;
 }
 #endif
 

@@ -54,7 +54,7 @@ typedef enum {
 
 /**
  * @brief custom button configuration
- * 
+ *
  */
 typedef struct {
     uint8_t active_level;                                   /**< active level when press down */

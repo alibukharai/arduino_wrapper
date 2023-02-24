@@ -1,8 +1,8 @@
 #include "Button.h"
-#include "button_gpio.h"
-#include "button_adc.h"
-#include "iot_button.h"
-#include "btn_config.h"
+#include "include/button_gpio.h"
+#include "include/button_adc.h"
+#include "include/iot_button.h"
+
 
 Button::Button(int pin, const bool pullup)
 {
