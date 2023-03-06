@@ -6,10 +6,7 @@ void setup()
     Serial.begin(115200);
 
     // initializing a button
-
-    Button *btn = new Button(9, false);
-    // Button *btn = new Button(9, false, 0, 0, 100, 400);
-
+    Button *btn = new Button(9, false); //incase of ADC button    "Button *btn = new Button(9, false, 0, 0, 100, 400);"
     btn->attachPressDown(&onButtonPressDown);
     btn->attachPressUp(&onButtonPressUp);
     btn->attachPressRepeat(&onButtonPressRepeat);
@@ -19,15 +16,6 @@ void setup()
     btn->attachLongPressHold(&onButtonLongPressHold);
     btn->attachPressRepeatDone(&onButtonPressRepeatDone);
 
-    //all supported functions/methods 
-
-    // btn->deleteButton();
-    btn->detachPressDown();
-    printf("%d\n", btn->countCallBack());
-    printf("%d\n",btn->getEvent());
-    printf("%d\n",btn->getRepeat());
-    printf("%d\n",btn->getTickTime());
-    printf("%d\n",btn->getLongPressHoldCount());
 }
 
 void loop()

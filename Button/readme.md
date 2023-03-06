@@ -103,13 +103,26 @@ Deleting the button instance is useful when you no longer need the button and wa
 ```
   btn->countCallBack()
 ```
-This function returns the number of callbacks currently attached to the button. This functions is useful for debugging and monitoring the state of the button instance, especially if you have multiple event handlers attached to the button and want to ensure that they are all being executed correctly.
+This function returns the number of callbacks **currently** attached to the button. This functions is useful for debugging and monitoring the state of the button instance, especially if you have multiple event handlers attached to the button and want to ensure that they are all being executed correctly.
 
 ## Get Event
 ```
   btn->getEvent()
 ```
 This event is used to retrieve the current event type of a button instance. This can be helpful for monitoring the current state of the button instance and for triggering different actions or behaviors depending on the current event type.
+
+typedef enum {
+    BUTTON_PRESS_DOWN = 0,
+    BUTTON_PRESS_UP,
+    BUTTON_PRESS_REPEAT,
+    BUTTON_PRESS_REPEAT_DONE,
+    BUTTON_SINGLE_CLICK,
+    BUTTON_DOUBLE_CLICK,
+    BUTTON_LONG_PRESS_START,
+    BUTTON_LONG_PRESS_HOLD,
+    BUTTON_EVENT_MAX,
+    BUTTON_NONE_PRESS,
+} button_event_t;
 
   
 ## Get Repeat
@@ -128,8 +141,7 @@ This function is used to retrieve the number of times a button has been repeated
 
 ##  Get Long Press Hold Count 
 
-This function is used to retrieve the number of times the button has been held down during a long press event.
-
 ```
   btn->getLongPressHoldCount()
 ```
+This function is used to retrieve the number of times the button has been held down during a long press event.

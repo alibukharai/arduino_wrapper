@@ -118,7 +118,7 @@ static void button_handler(button_dev_t *btn)
         } else if (btn->ticks > btn->long_press_ticks) {
             btn->event = (uint8_t)BUTTON_LONG_PRESS_START;
             CALL_EVENT_CB(BUTTON_LONG_PRESS_START);
-            btn->state = 5;
+            btn->state = 4;
         }
         break;
 
