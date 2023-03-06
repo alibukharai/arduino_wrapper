@@ -7,7 +7,7 @@ void setup()
 
     // initializing a button
 
-    Button *btn = new Button(10, false);
+    Button *btn = new Button(9, false);
     // Button *btn = new Button(9, false, 0, 0, 100, 400);
 
     btn->attachPressDown(&onButtonPressDown);
@@ -19,15 +19,15 @@ void setup()
     btn->attachLongPressHold(&onButtonLongPressHold);
     btn->attachPressRepeatDone(&onButtonPressRepeatDone);
 
-    //supported functions
+    //all supported functions/methods 
 
     // btn->deleteButton();
-    // btn->detachPressDown();
-    // printf("%d\n", btn->countCallBack());
-    // printf("%d\n",btn->getEvent());
-    // printf("%d\n",btn->getRepeat());
-    // printf("%d\n",btn->getTickTime());
-    // printf("%d\n",btn->getLongPressHoldCount());
+    btn->detachPressDown();
+    printf("%d\n", btn->countCallBack());
+    printf("%d\n",btn->getEvent());
+    printf("%d\n",btn->getRepeat());
+    printf("%d\n",btn->getTickTime());
+    printf("%d\n",btn->getLongPressHoldCount());
 }
 
 void loop()

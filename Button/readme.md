@@ -27,7 +27,7 @@ There are two ways this driver can handle buttons:
 | `Button double click`       | This event is triggered when the button is clicked twice in quick succession.                                           | attachDoubleClick     |
 | `Button long press start`   | This event is triggered when the button is held down for a specified amount of time, indicating a potential long press. | attachLongPressStart  |
 | `Button long press hold`    | This event is triggered repeatedly while the button is held down after a long press has been detected.                  | attachLongPressHold   |
-| `Button press repeat done`  | This event is triggered when the button repetition is completed                                                      | attachPressRepeatDone |
+| `Button press repeat done`  | This event is triggered when the button repetition is completed                                                         | attachPressRepeatDone |
 
 
 
@@ -68,7 +68,7 @@ This creates a new button object and assigns it to the pointer variable btn. The
 ## Attach Callback Function
 
 ```
- btn-> attachPressDown(& Callback Function name
+ btn-> attachPressDown(& Callback Function name)
 
 ```
 This attaches a callback function to the button's attachPressDown event, which triggers when the button is pressed down.
@@ -79,7 +79,7 @@ To use this code, you should replace & "Callback Function name" with the actual 
 ## Detach Callback Function 
 
 ```
-  btn->detachPressDown(
+  btn->detachPressDown
 
 ```
 The code detaches any event handler that was previously attached to the button instance's attachPressDown event. This means that if a callback function was previously attached to this event using btn->attachPressDown(& Callback Function name), it will no longer be executed when the button is pressed down.
@@ -89,7 +89,7 @@ Detaching an event handler is useful when you want to change the behavior of a b
 ## Delete Button 
 
 ```
-  btn->deleteButton(
+  btn->deleteButton
  
 ```
 The btn->deleteButton() code deletes the button instance created by new button(pin number, pullupActive), which means all the events attached to the button instance will be detached as well.
