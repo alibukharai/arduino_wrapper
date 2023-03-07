@@ -12,6 +12,7 @@
 #include "esp_log.h"
 
 
+
 #define ENABLE_UVC_FRAME_RESOLUTION_ANY
 
 

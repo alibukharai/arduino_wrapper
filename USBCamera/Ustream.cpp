@@ -18,7 +18,7 @@ Ustream::Ustream(bool cam_fnc, bool mic_fnc) {
 
 
 void Ustream ::frameResolution(int width, int height) {
-  if (width == True & height == True) {
+  if (width == true & height == true) {
     _frameWidth = width;
     _frameHeigth = height;
   } else {
@@ -27,14 +27,14 @@ void Ustream ::frameResolution(int width, int height) {
   }
 }
 void Ustream ::frameInterval(int interval) {
-  if (interval == True) {
+  if (interval == true) {
     _frameInterval = FPS2INTERVAL(interval);
   } else {
     _frameInterval = FPS2INTERVAL(15);
   }
 }
-void Ustream ::frameBufferSize(int buffersize,k,l) {
-  if (buffersize == True) {
+void Ustream ::frameBufferSize(int buffersize) {
+  if (buffersize == true) {
     _frameBufferSize = buffersize;
   } else {
     _frameBufferSize = (35 * 1024);
@@ -45,19 +45,19 @@ void Ustream ::frameBufferSize(int buffersize,k,l) {
 
 void config() {
 
-  uvc_config_t uvc_config = {
-    .frame_width = DEMO_UVC_FRAME_WIDTH,
-    _frameWidth,
-    .frame_height = DEMO_UVC_FRAME_HEIGHT,
-    _frameHeight,
-    .frame_interval = FPS2INTERVAL(15),
-    _frameInterval,
-    .xfer_buffer_size = DEMO_UVC_XFER_BUFFER_SIZE,
-    .xfer_buffer_a = xfer_buffer_a,
-    .xfer_buffer_b = xfer_buffer_b,
-    .frame_buffer_size = DEMO_UVC_XFER_BUFFER_SIZE,
-    .frame_buffer = frame_buffer,
-    .frame_cb = &camera_frame_cb,
-    .frame_cb_arg = NULL,
-  };
+  // uvc_config_t uvc_config = {
+  //   .frame_width = DEMO_UVC_FRAME_WIDTH,
+  //   _frameWidth,
+  //   .frame_height = DEMO_UVC_FRAME_HEIGHT,
+  //   _frameHeight,
+  //   .frame_interval = FPS2INTERVAL(15),
+  //   _frameInterval,
+  //   .xfer_buffer_size = DEMO_UVC_XFER_BUFFER_SIZE,
+  //   .xfer_buffer_a = xfer_buffer_a,
+  //   .xfer_buffer_b = xfer_buffer_b,
+  //   .frame_buffer_size = DEMO_UVC_XFER_BUFFER_SIZE,
+  //   .frame_buffer = frame_buffer,
+  //   .frame_cb = &camera_frame_cb,
+  //   .frame_cb_arg = NULL,
+  // };
 }
