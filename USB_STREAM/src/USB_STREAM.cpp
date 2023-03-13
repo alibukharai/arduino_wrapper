@@ -1,5 +1,5 @@
 // Include necessary headers
-#include "USBarduino.h"
+#include "USB_STREAM.h"
 #include "original/usb_stream.h"
 #include "freertos/event_groups.h"
 
@@ -10,12 +10,12 @@ static const char *TAG = "driver";
 esp_err_t ret = ESP_FAIL;
 
 
-// Define an empty constructor for the USBarduino class
-USBarduino::USBarduino() {
+// Define an empty constructor for the USB_STREAM class
+USB_STREAM::USB_STREAM() {
 }
 
 // Define a method to enable/disable the camera and set its properties accordingly
-void USBarduino::enableCamera(bool cam_enable_func) {
+void USB_STREAM::enableCamera(bool cam_enable_func) {
   if (cam_enable_func == true) {
     printf("Camera is enabled\n");
     _frameWidth = FRAME_RESOLUTION_ANY;
@@ -28,7 +28,7 @@ void USBarduino::enableCamera(bool cam_enable_func) {
 }
 
 // Define a method to set the frame resolution
-void USBarduino ::frameResolution(int width, int height) {
+void USB_STREAM ::frameResolution(int width, int height) {
   if (width > 0 && height > 0) {
     _frameWidth = width;
     _frameHeight = height;
@@ -43,7 +43,7 @@ void USBarduino ::frameResolution(int width, int height) {
 }
 
 // Define a method to set the frame interval
-void USBarduino ::frameInterval(int interval) {
+void USB_STREAM ::frameInterval(int interval) {
   if (interval > 0) {
     _frameInterval = FPS2INTERVAL(interval);
     printf("Frame interval %d\n", _frameInterval);
@@ -54,7 +54,7 @@ void USBarduino ::frameInterval(int interval) {
 }
 
 // Define a method to set the frame buffer size
-void USBarduino ::frameBufferSize(int buffersize) {
+void USB_STREAM ::frameBufferSize(int buffersize) {
   if (buffersize > 0) {
     _frameBufferSize = buffersize;
   } else {
@@ -63,27 +63,27 @@ void USBarduino ::frameBufferSize(int buffersize) {
 }
 
 // Define a method to get the frame height
-int USBarduino::_getframeHeight() {
+int USB_STREAM::_getframeHeight() {
   return _frameHeight;
 }
 
 // Define a method to get the frame width
-int USBarduino::_getframeWidth() {
+int USB_STREAM::_getframeWidth() {
   return _frameWidth;
 }
 
 // Define a method to get the frame interval
-int USBarduino::_getframeInterval() {
+int USB_STREAM::_getframeInterval() {
   return _frameInterval;
 }
 
 // Define a method to get the frame buffer size
-int USBarduino::_getframeBufferSize() {
+int USB_STREAM::_getframeBufferSize() {
   return _frameBufferSize;
 }
 
 // Define a method to register a user-defined callback function
-void USBarduino ::registerCallBack(uvc_frame_callback_t *newFunction, void *cb_arg) {
+void USB_STREAM ::registerCallBack(uvc_frame_callback_t *newFunction, void *cb_arg) {
   if (newFunction != NULL) {
     this->_user_frame_cb = newFunction;
     this->_user_frame_cb_arg = cb_arg;
@@ -94,14 +94,14 @@ void USBarduino ::registerCallBack(uvc_frame_callback_t *newFunction, void *cb_a
 
 // Define a static method that serves as the callback function for the camera frame
 static void _camera_frame_cb(uvc_frame_t *frame, void *ptr) {
-  USBarduino *my_instance = (USBarduino *)ptr;
+  USB_STREAM *my_instance = (USB_STREAM *)ptr;
   if (my_instance->_user_frame_cb != NULL) {
     my_instance->_user_frame_cb(frame, my_instance->_user_frame_cb_arg);
   }
 }
 
 // Define a method to configure the camera stream
-void USBarduino ::config() {
+void USB_STREAM ::config() {
   // Allocate memory for transfer buffers and frame buffer
   uint8_t *_xferBufferA = (uint8_t *)malloc(_getframeBufferSize());
   assert(_xferBufferA != NULL);
@@ -133,7 +133,7 @@ void USBarduino ::config() {
 }
 
 // Define a method to start the USB streaming
-void USBarduino ::start() {
+void USB_STREAM ::start() {
   ret = usb_streaming_start();
   if (ret != ESP_OK) {
     printf("usb streaming start failed\n");

@@ -1,6 +1,6 @@
 //Header file guard
-#ifndef USBARDUINO_H
-#define USBARDUINO_H
+#ifndef USB_STREAM_H
+#define USB_STREAM_H
 //Include necessary header files
 #include <stdio.h>
 #include <assert.h>
@@ -11,7 +11,7 @@
 #include "esp_log.h"
 #include "original/usb_stream.h"
 
-class USBarduino {
+class USB_STREAM {
 private:
   //Private member variables for storing camera settings and memory allocation
   int _frameWidth = FRAME_RESOLUTION_ANY;
@@ -34,7 +34,7 @@ public:
   uvc_frame_callback_t *_user_frame_cb = NULL;
   void *_user_frame_cb_arg = NULL;
   //Public member functions for configuring and starting camera stream
-  USBarduino();  //constructor
+  USB_STREAM();  //constructor
   void enableCamera(bool cam_enable_func);
   void frameResolution(int width, int height);
   void frameInterval(int interval);
