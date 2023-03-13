@@ -4,10 +4,6 @@
 // Define a constant string for logging
 static const char *TAG = "demo";
 
-// Define the camera frame callback function
-static void cameraFramecb(uvc_frame *frame, void *user_ptr);
-
-
 // The setup function runs once on startup
 void setup() {
   // Instantiate a Ustream object
