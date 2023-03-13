@@ -16,7 +16,7 @@
 
 #define ENABLE_UVC_FRAME_RESOLUTION_ANY
 
-typedef void (*callbackFunction)(void);
+// typedef void (*callbackFunction)(void);
 
 
 
@@ -37,15 +37,21 @@ private:
   int _getframeInterval();
   int _getframeBufferSize();
 public:
+
   uvc_frame_callback_t *_user_frame_cb = NULL;
   void *_user_frame_cb_arg = NULL;
+
   Ustream(bool cam_fnc, bool mic_fnc);
   void enableWifi(bool wifi);
   void frameResolution(int width, int height);
   void frameInterval(int interval);
   void frameBufferSize(int buffersize);
+
+
   void user(uvc_frame_callback_t *newFunction, void *cb_arg);
   void config();
+  void start();
+  
 };
 
 #endif  // USB_STREAM_H

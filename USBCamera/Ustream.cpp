@@ -3,6 +3,7 @@
 #include "freertos/event_groups.h"
 
 static const char *TAG = "uvc_mic_spk_demo";
+esp_err_t ret = ESP_FAIL;
 
 bool ENABLE_UVC_CAMERA_FUNCTION = false;
 bool ENABLE_UVC_WIFI_XFER = false;
@@ -66,7 +67,7 @@ void Ustream ::frameInterval(int interval) {
     printf("Frame interval %d\n", _frameInterval);
   } else {
     _frameInterval = FPS2INTERVAL(15);
-    printf("Default Frame interval is used %d\n", _frameInterval);
+    printf("Default Frame interval is used FPS2INTERVAL(15)\n");
   }
 }
 
@@ -97,26 +98,30 @@ int Ustream::_getframeBufferSize() {
 }
 
 void Ustream ::user(uvc_frame_callback_t *newFunction, void *cb_arg) {
-  this->_user_frame_cb = newFunction;
-  this->_user_frame_cb_arg = cb_arg;
-
+  if (newFunction != NULL) {
+    this->_user_frame_cb = newFunction;
+    this->_user_frame_cb_arg = cb_arg;
+  } else {
+    printf("Define a Callback Function\n");
+  }
 }
 
-static void _camera_frame_cb(uvc_frame_t *frame, void *ptr)
-{
+static void _camera_frame_cb(uvc_frame_t *frame, void *ptr) {
   Ustream *my_instance = (Ustream *)ptr;
-  my_instance->_user_frame_cb(frame, my_instance->_user_frame_cb_arg);
+  if (my_instance->_user_frame_cb != NULL) {
+    my_instance->_user_frame_cb(frame, my_instance->_user_frame_cb_arg);
+  }
 }
-
 
 void Ustream ::config() {
-  uint8_t *_xfer_buffer_a = (uint8_t *)malloc(_getframeBufferSize());
+  uint8_t *xfer_buffer_a = (uint8_t *)malloc(_getframeBufferSize());
   assert(xfer_buffer_a != NULL);
   uint8_t *xfer_buffer_b = (uint8_t *)malloc(_getframeBufferSize());
   assert(xfer_buffer_b != NULL);
   // /* malloc frame buffer for a jpeg frame*/
   uint8_t *frame_buffer = (uint8_t *)malloc(_getframeBufferSize());
   assert(frame_buffer != NULL);
+  printf("inside config\n");
 
   uvc_config_t uvc_config = {
     .frame_width = _getframeWidth(),
@@ -127,7 +132,20 @@ void Ustream ::config() {
     .xfer_buffer_b = xfer_buffer_b,
     .frame_buffer_size = _getframeBufferSize(),
     .frame_buffer = frame_buffer,
-    .frame_cb = _camera_frame_cb,
+    .frame_cb = &_camera_frame_cb,
     .frame_cb_arg = this,
   };
+  ret = uvc_streaming_config(&uvc_config);
+  if (ret != ESP_OK) {
+    ESP_LOGE(TAG, "uvc streaming config failed");
+  }
+}
+
+void Ustream ::start() {
+  printf("start\n");
+  ret = usb_streaming_start();
+  if (ret != ESP_OK) {
+    printf("usb streaming start failed\n");
+  } else
+    printf("usb streaming start succeed\n");
 }
