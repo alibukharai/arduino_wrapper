@@ -60,4 +60,3 @@ In the Arduino sketch, add the following line at the beginning of the code:
 Replace "library_name" with the name of the library you imported.
 
 > Refer to the library's documentation or examples to learn how to use the library in your code.
-

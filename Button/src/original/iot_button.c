@@ -21,8 +21,9 @@
 #include "iot_button.h"
 #include "esp_timer.h"
 #include "sdkconfig.h"
-#include "config/btn_config.h"
-
+#ifdef ARDUINO
+#include "arduino_config.h"
+#endif 
 
 
 static const char *TAG = "button";

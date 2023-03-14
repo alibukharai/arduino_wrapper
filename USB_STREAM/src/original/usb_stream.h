@@ -13,8 +13,9 @@
 #include "esp_err.h"
 #include "usb/usb_types_stack.h"
 #include "libuvc_def.h"
+#ifdef ARDUINO
 #include "arduino_config.h"
-
+#endif 
 #ifdef __cplusplus
 extern "C" {
 #endif

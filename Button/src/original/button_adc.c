@@ -27,8 +27,9 @@
 #include "esp_adc_cal.h"
 #endif
 #include "button_adc.h"
-#include "config/btn_config.h"
-
+#ifdef ARDUINO
+#include "arduino_config.h"
+#endif
 
 
 

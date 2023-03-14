@@ -5,7 +5,7 @@
 #define BUTTON_H
 #include <Arduino.h>
 #include "original/iot_button.h"
-#include "config/btn_config.h"
+#include "original/arduino_config.h"
 
     // Define a function pointer type for callbacks
 typedef void (*callbackFunction)(void);

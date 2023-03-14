@@ -1,5 +1,5 @@
 // Include header file for Ustream class
-#include "USBarduino.h"
+#include "USB_STREAM.h"
 
 // Define a constant string for logging
 static const char *TAG = "demo";
@@ -7,14 +7,11 @@ static const char *TAG = "demo";
 // The setup function runs once on startup
 void setup() {
   // Instantiate a Ustream object
-  USBarduino *usb = new USBarduino();
+  USB_STREAM *usb = new USB_STREAM();
   // Enable the camera
 
   usb->enableCamera(true);
-  // usb->frameResolution(480, 320);
-  // usb->frameInterval(5);
-  // usb->frameBufferSize(35840);
-
+  
   // Register the camera frame callback function
   usb->registerCallBack(&cameraFramecb, NULL);
 

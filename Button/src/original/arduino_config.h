@@ -1,5 +1,5 @@
-#ifndef BUTTON_CONFIG_H
-#define BUTTON_CONFIG_H
+#ifndef ARDUINO_CONFIG_H
+#define ARDUINO_CONFIG_H
 
 //Configuration parameters
 #define CONFIG_ADC_BUTTON_MAX_BUTTON_PER_CHANNEL 8       //range 1 10
